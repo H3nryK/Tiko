@@ -1,3 +1,4 @@
 django
 djangorestframwork
 django-cors-header
+djoser
