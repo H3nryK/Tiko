@@ -1,4 +1,3 @@
 django
-firebase-admin
 djangorestframwork
 django-cors-header

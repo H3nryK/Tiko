@@ -29,7 +29,6 @@ INSTALLED_APPS = [
     'venues',
     'corsheaders',
     'rest_framework',
-    'firebase_admin',
 ]
 
 MIDDLEWARE = [
