@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{%load crispy_forms_tags %}
+
+{% block title %}Contact Us - Venue Booking{% endblock %}
+
+{% block content %}
+<section class="contact-form py-16">
+    <div class="container mx-auto max-w-lg">
+        <h2 class="text-3xl font-bold mb-8 text-center">Contact Us</h2>
+        <form method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            {% csrf_token %}
+            {% crispy form %}
+            <div class="flex items-center justify-between">
+                <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Send Message
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

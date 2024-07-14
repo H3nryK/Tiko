@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Venue Booking{% endblock %}
+
+{% block content %}
+<section class="venue-list py-16">
+    <div class="container mx-auto">
+        <h2 class="text-3xl font-bold mb-8 text-center">
+            {% if category %}
+            {{ category.name }} Venues
+            {% else %}
+            All Venues
+            {% endif %}
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for venue in venues %}
+            <div class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                <img src="{{ venue.image.url }}" alt="{{ venue.name }}" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-semibold mb-2">{{ venue.name }}</h3>
+                    <p class="text-gray-600 mb-4">{{ venue.description|truncatewords:20 }}</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-lg font-bold">${{ venue.price_per_hour }}/hour</span>
+                        <a href="{% url 'venue_detail' venue.id %}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p>No Venues Found</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

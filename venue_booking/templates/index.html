@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Venue Booking{% endblock %}
+
+{% block content %}
+<section class="hero bg-gray-100 py-16">
+    <div class="container mx-auto text-center">
+        <h1 class="text-4xl font-bold mb-4">Find Your Perfect Venue</h1>
+        <p class="text-xl mb-8">Discover and book unique venues for any occasion</p>
+        <a href="{% url 'venue_list' %}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+            Explore Venues
+        </a>
+    </div>
+</section>
+
+<section class="venue-categories py-16">
+    <div class="container mx-auto">
+        <h2 class="text-3xl font-bold mb-8 text-center">Venue Categories</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for category in categories %}
+            <a href="{% url 'venue_list' category.id %}" class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                <img src="{{ category.image.url }}" alt="{{ category.name }}" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-semibold mb-2">{{ category.name }}</h3>
+                    <p class="text-gray-600">{{ category.description }}</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
