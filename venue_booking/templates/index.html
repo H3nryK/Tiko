@@ -3,29 +3,47 @@
 {% block title %}Home - Venue Booking{% endblock %}
 
 {% block content %}
-<section class="hero bg-gray-100 py-16">
-    <div class="container mx-auto text-center">
-        <h1 class="text-4xl font-bold mb-4">Find Your Perfect Venue</h1>
-        <p class="text-xl mb-8">Discover and book unique venues for any occasion</p>
-        <a href="{% url 'venue_list' %}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-            Explore Venues
+<section class="text-center mb-16">
+    <h1 class="text-5xl font-bold mb-4 text-gray-800">Welcome to Venue Booking</h1>
+    <p class="text-xl mb-8 text-gray-600">Find and book the perfect venue for your event</p>
+    <a href="{% url 'venue_list' %}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:-translate-y-1">
+        Browse Venues
+    </a>
+</section>
+
+<section class="mb-16">
+    <h2 class="text-3xl font-bold mb-8 text-center text-gray-800">Venue Categories</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {% for category in categories %}
+        <a href="{% url 'venue_list_by_category' category.id %}" class="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+            <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2 text-gray-800">{{ category.name }}</h3>
+                <p class="text-gray-600">Explore {{ category.name }} venues</p>
+            </div>
         </a>
+        {% endfor %}
     </div>
 </section>
 
-<section class="venue-categories py-16">
-    <div class="container mx-auto">
-        <h2 class="text-3xl font-bold mb-8 text-center">Venue Categories</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {% for category in categories %}
-            <a href="{% url 'venue_list' category.id %}" class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                <img src="{{ category.image.url }}" alt="{{ category.name }}" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h3 class="text-xl font-semibold mb-2">{{ category.name }}</h3>
-                    <p class="text-gray-600">{{ category.description }}</p>
-                </div>
-            </a>
-            {% endfor %}
+<section class="bg-blue-100 py-16 rounded-lg shadow-inner">
+    <div class="container mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-4 text-gray-800">Why Choose Us?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <svg class="w-12 h-12 mx-auto mb-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                <h3 class="text-xl font-semibold mb-2">Easy Search</h3>
+                <p class="text-gray-600">Find the perfect venue with our easy-to-use search tools.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <svg class="w-12 h-12 mx-auto mb-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <h3 class="text-xl font-semibold mb-2">Verified Venues</h3>
+                <p class="text-gray-600">All our venues are verified for quality and safety.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <svg class="w-12 h-12 mx-auto mb-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <h3 class="text-xl font-semibold mb-2">24/7 Support</h3>
+                <p class="text-gray-600">Our support team is always here to help you.</p>
+            </div>
         </div>
     </div>
 </section>

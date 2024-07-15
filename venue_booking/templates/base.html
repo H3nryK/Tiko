@@ -1,46 +1,76 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Venue Booking{% endblock %}</title>
-    {% load tailwind_tags %}
-    {% tailwind_css %}
-    {% load bootstrap4 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript jquery='full' %}
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 </head>
-<body class="flex flex-col min-h-screen">
-    <header class="bg-blue-600 text-white">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="{% url 'index' %}" class="text-2xl font-bold">Venue Booking</a>
-            <div>
-                <a href="{% url 'venue_list' %}" class="px-3 py-2 hover:bg-blue-700 rounded">Venues</a>
-                <a href="{% url 'contact' %}" class="px-3 py-2 hover:bg-blue-700 rounded">Contact</a>
+<body class="flex flex-col min-h-screen bg-gray-100 text-gray-900">
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg">
+        <nav class="container mx-auto px-6 py-3" x-data="{ open: false }">
+            <div class="flex justify-between items-center">
+                <a href="{% url 'index' %}" class="text-2xl font-bold">Venue Booking</a>
+                <div class="hidden md:flex space-x-4">
+                    <a href="{% url 'venue_list' %}" class="hover:bg-blue-700 px-3 py-2 rounded transition duration-300">Venues</a>
+                    <a href="{% url 'contact' %}" class="hover:bg-blue-700 px-3 py-2 rounded transition duration-300">Contact</a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'dashboard' %}" class="hover:bg-blue-700 px-3 py-2 rounded transition duration-300">Dashboard</a>
+                        <a href="{% url 'logout' %}" class="hover:bg-blue-700 px-3 py-2 rounded transition duration-300">Logout</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="hover:bg-blue-700 px-3 py-2 rounded transition duration-300">Login</a>
+                    {% endif %}
+                </div>
+                <button @click="open = !open" class="md:hidden focus:outline-none">
+                    <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+                        <path x-show="!open" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path x-show="open" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div x-show="open" class="md:hidden mt-3">
+                <a href="{% url 'venue_list' %}" class="block hover:bg-blue-700 px-3 py-2 rounded transition duration-300">Venues</a>
+                <a href="{% url 'contact' %}" class="block hover:bg-blue-700 px-3 py-2 rounded transition duration-300">Contact</a>
                 {% if user.is_authenticated %}
-                    <a href="{% url 'dashboard' %}" class="px-3 py-2 hover:bg-blue-700 rounded">Dashboard</a>
-                    <a href="{% url 'logout' %}" class="px-3 py-2 hover:bg-blue-700 rounded">Logout</a>
+                    <a href="{% url 'dashboard' %}" class="block hover:bg-blue-700 px-3 py-2 rounded transition duration-300">Dashboard</a>
+                    <a href="{% url 'logout' %}" class="block hover:bg-blue-700 px-3 py-2 rounded transition duration-300">Logout</a>
                 {% else %}
-                    <a href="{% url 'login' %}" class="px-3 py-2 hover:bg-blue-700 rounded">Login</a>
+                    <a href="{% url 'login' %}" class="block hover:bg-blue-700 px-3 py-2 rounded transition duration-300">Login</a>
                 {% endif %}
             </div>
         </nav>
     </header>
-    
-    <div id="preloader" class="fixed inset-0 z-50 flex items-center justify-center bg-white">
-        <!-- Add your preloader animation here -->
-    </div>
 
-    <main class="flex-grow">
+    <main class="flex-grow container mx-auto px-6 py-8">
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="bg-gray-800 text-white py-4">
-        <div class="container mx-auto px-6 text-center">
-            <p>&copy; 2024 Venue Booking. All rights reserved.</p>
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap justify-between">
+                <div class="w-full md:w-1/4 mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold mb-2">Venue Booking</h3>
+                    <p class="text-gray-400">Find and book the perfect venue for your event.</p>
+                </div>
+                <div class="w-full md:w-1/4 mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold mb-2">Quick Links</h3>
+                    <ul class="text-gray-400">
+                        <li><a href="{% url 'index' %}" class="hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="{% url 'venue_list' %}" class="hover:text-white transition duration-300">Venues</a></li>
+                        <li><a href="{% url 'contact' %}" class="hover:text-white transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/4 mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold mb-2">Contact Us</h3>
+                    <p class="text-gray-400">123 Venue Street<br>City, State 12345<br>Phone: (123) 456-7890</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-sm text-center text-gray-400">
+                <p>&copy; 2024 Venue Booking. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 

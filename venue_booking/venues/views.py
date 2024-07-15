@@ -50,7 +50,6 @@ class VenueDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('dashboard')
     template_name = 'venue_confirm_delete.html'
 
-@login_required
 def add_review(request, venue_id):
     venue = get_object_or_404(Venue, id=venue_id)
     if request.method == 'POST':
@@ -65,7 +64,6 @@ def add_review(request, venue_id):
         form = ReviewForm()
     return render(request, 'add_review.html', {'form': form, 'venue': venue})
 
-@login_required
 def book_venue(request, venue_id):
     venue = get_object_or_404(Venue, id=venue_id)
     if request.method == 'POST':
