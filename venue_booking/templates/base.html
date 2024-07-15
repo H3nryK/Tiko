@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Venue Booking{% endblock %}</title>
+    <title>{% block title %}Tiko{% endblock %}</title>
     {% load static %}
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
@@ -13,7 +13,7 @@
     <header class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg">
         <nav class="container mx-auto px-6 py-3" x-data="{ open: false }">
             <div class="flex justify-between items-center">
-                <a href="{% url 'index' %}" class="text-2xl font-bold">Venue Booking</a>
+                <a href="{% url 'index' %}" class="text-2xl font-bold">Tiko</a>
                 <div class="hidden md:flex space-x-4">
                     <a href="{% url 'venue_list' %}" class="hover:bg-blue-700 px-3 py-2 rounded transition duration-300">Venues</a>
                     <a href="{% url 'contact' %}" class="hover:bg-blue-700 px-3 py-2 rounded transition duration-300">Contact</a>
@@ -25,7 +25,7 @@
                     {% endif %}
                 </div>
                 <button @click="open = !open" class="md:hidden focus:outline-none">
-                    <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+                    <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24" fill="#fff">
                         <path x-show="!open" d="M4 6h16M4 12h16M4 18h16"></path>
                         <path x-show="open" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
@@ -48,11 +48,11 @@
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="bg-gray-800 text-white py-8">
+    <footer class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-8">
         <div class="container mx-auto px-6">
             <div class="flex flex-wrap justify-between">
                 <div class="w-full md:w-1/4 mb-6 md:mb-0">
-                    <h3 class="text-xl font-bold mb-2">Venue Booking</h3>
+                    <h3 class="text-xl font-bold mb-2">Tiko</h3>
                     <p class="text-gray-400">Find and book the perfect venue for your event.</p>
                 </div>
                 <div class="w-full md:w-1/4 mb-6 md:mb-0">
@@ -69,7 +69,7 @@
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-sm text-center text-gray-400">
-                <p>&copy; 2024 Venue Booking. All rights reserved.</p>
+                <p>&copy; 2024 Tiko. All rights reserved.</p>
             </div>
         </div>
     </footer>
