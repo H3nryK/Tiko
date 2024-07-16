@@ -3,10 +3,9 @@
 {% block title %}Contact Us - Venue Booking{% endblock %}
 
 {% block content %}
-<div class="max-w-2xl mx-auto">
-    <h1 class="text-3xl font-bold mb-6 text-gray-800">Contact Us</h1>
-
-    <div class="bg-white shadow-lg rounded-lg p-8">
+<section class="py-16 bg-gray-100">
+    <div class="max-w-2xl mx-auto bg-white shadow-lg rounded-lg p-8">
+        <h1 class="text-3xl font-bold mb-6 text-gray-800 text-center">Contact Us</h1>
         <form method="post" class="space-y-6">
             {% csrf_token %}
             {% for field in form %}
@@ -27,5 +26,5 @@
             </button>
         </form>
     </div>
-</div>
+</section>
 {% endblock %}

@@ -16,6 +16,15 @@
                 </a>
             </div>
         </form>
+        <div class="text-center mt-4">
+            <p class="text-gray-600">or continue with</p>
+            <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mt-4 focus:outline-none focus:shadow-outline">
+                Continue with Google
+            </button>
+        </div>
+        <div class="text-center mt-4">
+            <p class="text-gray-600">Don't have an account? <a href="{% url 'signup' %}" class="text-blue-500 hover:text-blue-800 font-bold">Sign Up</a></p>
+        </div>
     </div>
 </section>
 {% endblock %}
